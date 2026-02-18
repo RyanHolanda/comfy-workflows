@@ -14,9 +14,7 @@ To run it in your custom comfy instance, just open your terminal and paste the f
 
 ```bash
 cd /path/to/ComfyUI # Optional, if you are not in the ComfyUI directory. You should run this command from the root ComfyUI directory.
-curl -O https://raw.githubusercontent.com/RyanHolanda/comfy-workflows/main/portuguese-infinite-talk/install.sh
-chmod +x install.sh
-bash install.sh
+curl -sSL https://raw.githubusercontent.com/RyanHolanda/comfy-workflows/main/portuguese-infinite-talk/install.sh | bash
 ```
 
 ## Usage
