@@ -18,3 +18,7 @@ curl -O https://raw.githubusercontent.com/RyanHolanda/comfy-workflows/main/portu
 chmod +x install.sh
 bash install.sh
 ```
+
+## Usage
+
+Once the workflow is installed, just load the `portuguese-infinite-talk.json` in your ComfyUI instance. The script already copies the workflow to the designated repository that comfyUI reads from. So you can just load it from the UI.

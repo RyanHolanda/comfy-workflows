@@ -144,7 +144,24 @@ hf download stabilityai/sd-vae-ft-mse config.json \
 echo "LatentSync 1.6 models downloaded."
 
 # =============================================================================
-# STEP 5: Install ComfyUI-LatentSyncWrapper custom node
+# STEP 5: Install ComfyUI-WanVideoWrapper custom node (InfiniteTalk nodes)
+# =============================================================================
+echo "Installing ComfyUI-WanVideoWrapper..."
+
+if [ ! -d "custom_nodes/ComfyUI-WanVideoWrapper" ]; then
+    git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git \
+        custom_nodes/ComfyUI-WanVideoWrapper
+else
+    echo "ComfyUI-WanVideoWrapper already cloned, pulling latest..."
+    git -C custom_nodes/ComfyUI-WanVideoWrapper pull
+fi
+
+pip install -r custom_nodes/ComfyUI-WanVideoWrapper/requirements.txt
+
+echo "ComfyUI-WanVideoWrapper installed."
+
+# =============================================================================
+# STEP 6: Install ComfyUI-LatentSyncWrapper custom node
 # =============================================================================
 echo "Installing ComfyUI-LatentSyncWrapper..."
 
@@ -161,10 +178,26 @@ pip install -r custom_nodes/ComfyUI-LatentSyncWrapper/requirements.txt
 echo "LatentSyncWrapper installed."
 
 # =============================================================================
+# STEP 7: Download the workflow JSON into ComfyUI's workflows folder
+# =============================================================================
+echo "Downloading Portuguese InfiniteTalk workflow..."
+
+mkdir -p user/default/workflows
+
+curl -L -o user/default/workflows/portuguese-infinite-talk.json \
+    https://raw.githubusercontent.com/RyanHolanda/comfy-workflows/main/portuguese-infinite-talk/portuguese-infinite-talk.json
+
+echo "Workflow downloaded."
+
+# =============================================================================
 # DONE
 # =============================================================================
 echo ""
 echo "============================================================"
-echo " Setup complete! All models are in place."
-echo " Load the workflow: wanvideo_I2V_InfiniteTalk_MDMZ_Portuguese.json"
+echo " Setup complete! Everything is ready."
+echo ""
+echo " The workflow has been pre-loaded into ComfyUI:"
+echo "   user/default/workflows/portuguese-infinite-talk.json"
+echo ""
+echo " Just start ComfyUI and open the workflow from the menu!"
 echo "============================================================"
