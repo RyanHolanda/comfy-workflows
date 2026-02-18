@@ -25,13 +25,39 @@ mkdir -p models/loras/WanVideo/Lightx2v
 # Wav2Vec2 (for MultiTalk / InfiniteTalk audio embeddings)
 mkdir -p models/wav2vec2
 
-# LatentSync 1.6 checkpoints (inside the custom node folder)
+echo "Directories created."
+
+# =============================================================================
+# STEP 2: Install Custom Nodes (Required for code structure)
+# =============================================================================
+echo "Installing Custom Nodes..."
+
+# 1. ComfyUI-WanVideoWrapper (for InfiniteTalk nodes)
+if [ ! -d "custom_nodes/ComfyUI-WanVideoWrapper" ]; then
+    git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git \
+        custom_nodes/ComfyUI-WanVideoWrapper
+else
+    echo "ComfyUI-WanVideoWrapper already cloned, pulling latest..."
+    git -C custom_nodes/ComfyUI-WanVideoWrapper pull
+fi
+pip install -r custom_nodes/ComfyUI-WanVideoWrapper/requirements.txt
+
+# 2. ComfyUI-LatentSyncWrapper
+if [ ! -d "custom_nodes/ComfyUI-LatentSyncWrapper" ]; then
+    git clone https://github.com/ShmuelRonen/ComfyUI-LatentSyncWrapper.git \
+        custom_nodes/ComfyUI-LatentSyncWrapper
+else
+    echo "ComfyUI-LatentSyncWrapper already cloned, pulling latest..."
+    git -C custom_nodes/ComfyUI-LatentSyncWrapper pull
+fi
+
+# Set up checkpoints directory structure inside the node
 LATENTSYNC_DIR="custom_nodes/ComfyUI-LatentSyncWrapper/checkpoints"
 mkdir -p "$LATENTSYNC_DIR/whisper"
 mkdir -p "$LATENTSYNC_DIR/auxiliary"
 mkdir -p "$LATENTSYNC_DIR/vae"
 
-echo "Directories created."
+echo "Custom nodes installed and directories prepared."
 
 # =============================================================================
 # STEP 2: WanVideo / InfiniteTalk models (same as original workflow)
@@ -144,38 +170,16 @@ hf download stabilityai/sd-vae-ft-mse config.json \
 echo "LatentSync 1.6 models downloaded."
 
 # =============================================================================
-# STEP 5: Install ComfyUI-WanVideoWrapper custom node (InfiniteTalk nodes)
+# STEP 6: Final Dependency Check for LatentSync
 # =============================================================================
-echo "Installing ComfyUI-WanVideoWrapper..."
+echo "Checking LatentSync dependencies..."
 
-if [ ! -d "custom_nodes/ComfyUI-WanVideoWrapper" ]; then
-    git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git \
-        custom_nodes/ComfyUI-WanVideoWrapper
-else
-    echo "ComfyUI-WanVideoWrapper already cloned, pulling latest..."
-    git -C custom_nodes/ComfyUI-WanVideoWrapper pull
-fi
-
-pip install -r custom_nodes/ComfyUI-WanVideoWrapper/requirements.txt
-
-echo "ComfyUI-WanVideoWrapper installed."
-
-# =============================================================================
-# STEP 6: Install ComfyUI-LatentSyncWrapper custom node
-# =============================================================================
-echo "Installing ComfyUI-LatentSyncWrapper..."
-
-if [ ! -d "custom_nodes/ComfyUI-LatentSyncWrapper" ]; then
-    git clone https://github.com/ShmuelRonen/ComfyUI-LatentSyncWrapper.git \
-        custom_nodes/ComfyUI-LatentSyncWrapper
-else
-    echo "ComfyUI-LatentSyncWrapper already cloned, pulling latest..."
-    git -C custom_nodes/ComfyUI-LatentSyncWrapper pull
-fi
+# Fix strict mediapipe version if needed
+sed -i 's/mediapipe==0.10.11/mediapipe>=0.10.11/g' custom_nodes/ComfyUI-LatentSyncWrapper/requirements.txt
 
 pip install -r custom_nodes/ComfyUI-LatentSyncWrapper/requirements.txt
 
-echo "LatentSyncWrapper installed."
+echo "Dependencies verified."
 
 # =============================================================================
 # STEP 7: Download the workflow JSON into ComfyUI's workflows folder
