@@ -366,7 +366,7 @@
                 "ver": "f7eb33abc80a2aded1b46dff0dd14d07856a7d50"
             },
             "widgets_values": [
-                832,
+                272,
                 480,
                 "lanczos",
                 "crop",
@@ -1264,7 +1264,7 @@
                     ]
                 },
                 {
-                    "label": "288 width",
+                    "label": "272 width",
                     "localized_name": "width",
                     "name": "width",
                     "type": "INT",
@@ -1273,7 +1273,7 @@
                     ]
                 },
                 {
-                    "label": "512 height",
+                    "label": "480 height",
                     "localized_name": "height",
                     "name": "height",
                     "type": "INT",
@@ -1585,7 +1585,7 @@
                 "ver": "49430f900bf812a1e281560bafafd04c43dfdf13"
             },
             "widgets_values": [
-                832,
+                272,
                 480,
                 81,
                 9,
