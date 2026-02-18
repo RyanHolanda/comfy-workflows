@@ -105,6 +105,12 @@ hf download Comfy-Org/Wan_2.1_ComfyUI_repackaged \
     split_files/diffusion_models/wan2.1_i2v_720p_14B_fp8_e4m3fn.safetensors \
     --local-dir models/diffusion_models/WanVideo
 
+# Flatten WanVideo directory
+if [ -d "models/diffusion_models/WanVideo/split_files/diffusion_models" ]; then
+    mv models/diffusion_models/WanVideo/split_files/diffusion_models/*.safetensors models/diffusion_models/WanVideo/
+    rm -rf models/diffusion_models/WanVideo/split_files
+fi
+
 # InfiniteTalk models
 hf download Kijai/WanVideo_comfy_GGUF \
     InfiniteTalk/Wan2_1-InfiniteTalk_Single_Q8.gguf \
@@ -113,6 +119,12 @@ hf download Kijai/WanVideo_comfy_GGUF \
 hf download Kijai/WanVideo_comfy_fp8_scaled \
     InfiniteTalk/Wan2_1-InfiniteTalk-Multi_fp8_e4m3fn_scaled_KJ.safetensors \
     --local-dir models/diffusion_models/WanVideo/InfiniteTalk
+
+# Flatten InfiniteTalk directory
+if [ -d "models/diffusion_models/WanVideo/InfiniteTalk/InfiniteTalk" ]; then
+    mv models/diffusion_models/WanVideo/InfiniteTalk/InfiniteTalk/* models/diffusion_models/WanVideo/InfiniteTalk/
+    rm -rf models/diffusion_models/WanVideo/InfiniteTalk/InfiniteTalk
+fi
 
 # VAE
 hf download Kijai/WanVideo_comfy Wan2_1_VAE_bf16.safetensors \
@@ -127,6 +139,12 @@ hf download Comfy-Org/Wan_2.1_ComfyUI_repackaged \
     split_files/clip_vision/clip_vision_h.safetensors \
     --local-dir models/clip_vision
 
+# Flatten CLIP Vision directory
+if [ -d "models/clip_vision/split_files/clip_vision" ]; then
+    mv models/clip_vision/split_files/clip_vision/*.safetensors models/clip_vision/
+    rm -rf models/clip_vision/split_files
+fi
+
 # Vocal Separator
 hf download Kijai/MelBandRoFormer_comfy MelBandRoformer_fp16.safetensors \
     --local-dir models/diffusion_models/MelBandRoformer
@@ -135,6 +153,12 @@ hf download Kijai/MelBandRoFormer_comfy MelBandRoformer_fp16.safetensors \
 hf download Kijai/WanVideo_comfy \
     Lightx2v/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors \
     --local-dir models/loras/WanVideo/Lightx2v
+
+# Flatten LoRA directory
+if [ -d "models/loras/WanVideo/Lightx2v/Lightx2v" ]; then
+    mv models/loras/WanVideo/Lightx2v/Lightx2v/*.safetensors models/loras/WanVideo/Lightx2v/
+    rm -rf models/loras/WanVideo/Lightx2v/Lightx2v
+fi
 
 echo "WanVideo models downloaded."
 
