@@ -51,6 +51,36 @@ else
     git -C custom_nodes/ComfyUI-LatentSyncWrapper pull
 fi
 
+# 3. comfyui-kjnodes (for SetNode, GetNode, INTConstant, etc.)
+if [ ! -d "custom_nodes/comfyui-kjnodes" ]; then
+    git clone https://github.com/kijai/comfyui-kjnodes.git \
+        custom_nodes/comfyui-kjnodes
+else
+    echo "comfyui-kjnodes already cloned, pulling latest..."
+    git -C custom_nodes/comfyui-kjnodes pull
+fi
+pip install -r custom_nodes/comfyui-kjnodes/requirements.txt
+
+# 4. ComfyUI-MelBandRoFormer (for audio separation)
+if [ ! -d "custom_nodes/ComfyUI-MelBandRoFormer" ]; then
+    git clone https://github.com/kijai/ComfyUI-MelBandRoFormer.git \
+        custom_nodes/ComfyUI-MelBandRoFormer
+else
+    echo "ComfyUI-MelBandRoFormer already cloned, pulling latest..."
+    git -C custom_nodes/ComfyUI-MelBandRoFormer pull
+fi
+pip install -r custom_nodes/ComfyUI-MelBandRoFormer/requirements.txt
+
+# 5. ComfyUI-VideoHelperSuite (for VHS_VideoCombine)
+if [ ! -d "custom_nodes/ComfyUI-VideoHelperSuite" ]; then
+    git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git \
+        custom_nodes/ComfyUI-VideoHelperSuite
+else
+    echo "ComfyUI-VideoHelperSuite already cloned, pulling latest..."
+    git -C custom_nodes/ComfyUI-VideoHelperSuite pull
+fi
+pip install -r custom_nodes/ComfyUI-VideoHelperSuite/requirements.txt
+
 # Set up checkpoints directory structure inside the node
 LATENTSYNC_DIR="custom_nodes/ComfyUI-LatentSyncWrapper/checkpoints"
 mkdir -p "$LATENTSYNC_DIR/whisper"
@@ -60,7 +90,7 @@ mkdir -p "$LATENTSYNC_DIR/vae"
 echo "Custom nodes installed and directories prepared."
 
 # =============================================================================
-# STEP 2: WanVideo / InfiniteTalk models (same as original workflow)
+# STEP 3: WanVideo / InfiniteTalk models (same as original workflow)
 # =============================================================================
 echo "Downloading WanVideo / InfiniteTalk models..."
 
@@ -109,7 +139,7 @@ hf download Kijai/WanVideo_comfy \
 echo "WanVideo models downloaded."
 
 # =============================================================================
-# STEP 3: Wav2Vec2 model for MultiTalk / InfiniteTalk
+# STEP 4: Wav2Vec2 model for MultiTalk / InfiniteTalk
 # The workflow uses TencentGameMate/chinese-wav2vec2-base (required by MultiTalk)
 # =============================================================================
 echo "Downloading Wav2Vec2 model for MultiTalk..."
@@ -120,7 +150,7 @@ hf download TencentGameMate/chinese-wav2vec2-base \
 echo "Wav2Vec2 model downloaded."
 
 # =============================================================================
-# STEP 4: LatentSync 1.6 models
+# STEP 5: LatentSync 1.6 models
 # These go inside the custom node's checkpoints folder, NOT in ComfyUI/models
 # =============================================================================
 echo "Downloading LatentSync 1.6 models..."
