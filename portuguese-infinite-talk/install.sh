@@ -168,8 +168,8 @@ echo "WanVideo models downloaded."
 # =============================================================================
 echo "Downloading Wav2Vec2 model for MultiTalk..."
 
-hf download facebook/wav2vec2-base-pt-voxpopuli-v2 \
-    --local-dir models/wav2vec2/facebook/wav2vec2-base-pt-voxpopuli-v2
+hf download TencentGameMate/chinese-wav2vec2-base \
+    --local-dir models/wav2vec2/TencentGameMate/chinese-wav2vec2-base
 
 echo "Wav2Vec2 model downloaded."
 

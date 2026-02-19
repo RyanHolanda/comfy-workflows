@@ -874,7 +874,7 @@
         },
         {
             "id": 137,
-            "type": "Wav2VecModelLoader",
+            "type": "DownloadAndLoadWav2VecModel",
             "pos": [
                 540.5593867565296,
                 -999.3720101087068
@@ -888,11 +888,29 @@
             "mode": 0,
             "inputs": [
                 {
-                    "localized_name": "model_name",
-                    "name": "model_name",
+                    "localized_name": "model",
+                    "name": "model",
                     "type": "COMBO",
                     "widget": {
-                        "name": "model_name"
+                        "name": "model"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "base_precision",
+                    "name": "base_precision",
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "base_precision"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "load_device",
+                    "name": "load_device",
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "load_device"
                     },
                     "link": null
                 }
@@ -908,12 +926,12 @@
                 }
             ],
             "properties": {
-                "Node name for S&R": "Wav2VecModelLoader",
+                "Node name for S&R": "DownloadAndLoadWav2VecModel",
                 "cnr_id": "ComfyUI-WanVideoWrapper",
                 "ver": "058286fc0f3b0651a2f6b68309df3f06e8332cc0"
             },
             "widgets_values": [
-                "facebook/wav2vec2-base-pt-voxpopuli-v2/pytorch_model.bin",
+                "TencentGameMate/chinese-wav2vec2-base",
                 "fp16",
                 "main_device"
             ]
@@ -3166,8 +3184,8 @@
                 true,
                 400,
                 25,
+                1.1,
                 1.2,
-                1.3,
                 "para",
                 false,
                 false
