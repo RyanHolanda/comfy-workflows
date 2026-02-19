@@ -100,17 +100,17 @@ echo ""
 
 mkdir -p models/vibevoice
 
-# Download VibeVoice-Large (best quality for Portuguese)
-# The model auto-downloads on first run, but we can pre-fetch it
-if command -v hf &> /dev/null; then
-    echo "  → Using huggingface-cli to download..."
-    hf download SWivid/VibeVoice \
-        --local-dir models/vibevoice/VibeVoice-Large 2>/dev/null || \
-    echo "  ℹ️  Model will auto-download on first run if hf download fails."
+# Download VibeVoice models and required Qwen tokenizer
+if command -v huggingface-cli &> /dev/null; then
+    echo "  → Downloading VibeVoice-Large..."
+    huggingface-cli download SWivid/VibeVoice --local-dir models/vibevoice --include "VibeVoice-Large/*"
+    
+    echo "  → Downloading REQUIRED Qwen tokenizer..."
+    mkdir -p models/vibevoice/tokenizer
+    huggingface-cli download Qwen/Qwen2.5-1.5B --local-dir models/vibevoice/tokenizer --include "tokenizer.json" "tokenizer_config.json" "vocab.json" "merges.txt"
 else
-    echo "  ℹ️  huggingface-cli not found."
-    echo "  ℹ️  The VibeVoice model will auto-download on first run (~17 GB)."
-    echo "  ℹ️  To pre-download: pip install huggingface_hub[cli] && hf download SWivid/VibeVoice"
+    echo "  ⚠️  huggingface-cli not found. Please install it: pip install huggingface_hub[cli]"
+    echo "  ℹ️  The models and tokenizer must be in models/vibevoice/ to work."
 fi
 
 echo "✅ Model setup complete."
@@ -167,19 +167,17 @@ fi
 echo "✅ Room tone ready."
 
 # =============================================================================
-# STEP 5: Ensure workflow is in place
+# STEP 5: Download and place the workflow JSON
 # =============================================================================
 echo ""
-echo "📂 Checking workflow..."
+echo "📂 Downloading Voice Clone workflow..."
 
 mkdir -p user/default/workflows
 
-if [ -f "user/default/workflows/voice-clone-portuguese.json" ]; then
-    echo "  → Workflow already in place!"
-else
-    echo "  ⚠️  Workflow JSON not found at user/default/workflows/voice-clone-portuguese.json"
-    echo "     Please copy it manually."
-fi
+curl -L -o user/default/workflows/voice-clone-portuguese.json \
+    https://raw.githubusercontent.com/RyanHolanda/comfy-workflows/refs/heads/main/portuguese-voice-clone/portuguese-voice-clone.json
+
+echo "✅ Workflow downloaded to user/default/workflows/voice-clone-portuguese.json"
 
 # =============================================================================
 # DONE
