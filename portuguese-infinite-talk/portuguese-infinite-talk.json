@@ -913,7 +913,7 @@
                 "ver": "058286fc0f3b0651a2f6b68309df3f06e8332cc0"
             },
             "widgets_values": [
-                "facebook/wav2vec2-large-xlsr-53-portuguese/pytorch_model.bin",
+                "facebook/wav2vec2-base-pt-voxpopuli-v2/pytorch_model.bin",
                 "fp16",
                 "main_device"
             ]
