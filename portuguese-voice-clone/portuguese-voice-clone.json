@@ -101,10 +101,10 @@
                 "auto",
                 "full precision",
                 true,
-                35,
+                20,
                 42,
-                "randomize",
-                1.3,
+                "fixed",
+                2.0,
                 false
             ],
             "color": "#223",
@@ -418,8 +418,8 @@
                 25.0,
                 35.0,
                 false,
-                0.0,
-                0.0
+                0.1,
+                0.1
             ],
             "color": "#2a4b2a",
             "bgcolor": "#3a6b3a"
@@ -519,7 +519,7 @@
             "outputs": [],
             "properties": {},
             "widgets_values": [
-                "🇧🇷 BRAZILIAN PORTUGUESE TUNING NOTES\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n• use_sampling = false (deterministic — prevents language drift)\n• cfg_scale = 1.3 (official default)\n• diffusion_steps = 35 (higher for PT-BR phoneme fidelity)\n• de-esser = 0.4 (PT-BR has softer sibilants than English)\n• naturalize_vocal = 0.6 (remove AI metallic artifacts)\n\n💡 Reference voice: Use 30s+ of clean PT-BR speech.\n   VibeVoice auto-resamples to 24kHz."
+                "🇧🇷 BRAZILIAN PORTUGUESE TUNING NOTES\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n• use_sampling = false (deterministic — prevents language drift)\n• cfg_scale = 2.0 (strong guidance — prevents music hallucination)\n• diffusion_steps = 20 (official default, most stable)\n• seed = fixed 42 (reproducible output)\n• de-esser = 0.4 (PT-BR has softer sibilants than English)\n• naturalize_vocal = 0.6 (remove AI metallic artifacts)\n\n⚠️ Reference voice MUST be 30s+ of clean PT-BR speech.\n   No background music/noise. Solo speaker only.\n   VibeVoice auto-resamples to 24kHz."
             ],
             "color": "#432",
             "bgcolor": "#653"
