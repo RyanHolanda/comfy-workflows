@@ -1,0 +1,849 @@
+{
+    "id": "a1b2c3d4-voice-clone-ptbr-2026",
+    "revision": 0,
+    "last_node_id": 15,
+    "last_link_id": 14,
+    "nodes": [
+        {
+            "id": 1,
+            "type": "Note",
+            "pos": [
+                80,
+                -200
+            ],
+            "size": [
+                600,
+                200
+            ],
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [],
+            "properties": {},
+            "widgets_values": [
+                "🎙️ VOICE CLONE — PORTUGUESE (BR)\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nThis workflow clones a reference voice using VibeVoice 9B\nand applies post-processing for realistic Brazilian Portuguese output.\n\n🔧 HOW TO SWITCH VOICE MODES:\n  • MICROPHONE MODE → Mute the GREEN nodes (Room group)\n  • ROOM MODE       → Mute the BLUE nodes (Microphone group)\n\n  To mute: Right-click a node → select 'Mute'\n  Or select multiple nodes → press 'M'\n\n⚠️ By default, ROOM MODE is active (green nodes are muted)."
+            ],
+            "color": "#432",
+            "bgcolor": "#653"
+        },
+        {
+            "id": 2,
+            "type": "LoadAudio",
+            "pos": [
+                80,
+                80
+            ],
+            "size": [
+                315,
+                124
+            ],
+            "flags": {},
+            "order": 1,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        1
+                    ]
+                }
+            ],
+            "title": "🎤 Reference Voice (30s+ recommended)",
+            "properties": {
+                "Node name for S&R": "LoadAudio"
+            },
+            "widgets_values": [
+                "audio.wav"
+            ],
+            "color": "#322",
+            "bgcolor": "#533"
+        },
+        {
+            "id": 3,
+            "type": "VibeVoiceSingleSpeakerNode",
+            "pos": [
+                500,
+                80
+            ],
+            "size": [
+                400,
+                500
+            ],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "voice_to_clone",
+                    "type": "AUDIO",
+                    "link": 1
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        2
+                    ]
+                }
+            ],
+            "title": "🇧🇷 VibeVoice TTS — Portuguese",
+            "properties": {
+                "Node name for S&R": "VibeVoiceSingleSpeakerNode"
+            },
+            "widgets_values": [
+                "Digite o texto em português aqui.\n\nExemplo: Olá, tudo bem? Eu sou a sua nova influenciadora digital e estou aqui para conversar com vocês sobre os melhores conteúdos!",
+                "VibeVoice-Large",
+                "auto",
+                "full precision",
+                true,
+                35,
+                42,
+                1.5,
+                true,
+                0.85,
+                0.90,
+                200,
+                0.98
+            ],
+            "color": "#223",
+            "bgcolor": "#335"
+        },
+        {
+            "id": 4,
+            "type": "Music_MasterAudioEnhancement",
+            "pos": [
+                1000,
+                80
+            ],
+            "size": [
+                400,
+                550
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 2
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        3,
+                        7
+                    ]
+                }
+            ],
+            "title": "🧹 Vocal Naturalizer (Remove AI Artifacts)",
+            "properties": {
+                "Node name for S&R": "Music_MasterAudioEnhancement"
+            },
+            "widgets_values": [
+                "Hiss Only",
+                false,
+                0.6,
+                0.3,
+                0.0,
+                0.5,
+                1.5,
+                0.3,
+                -6.0,
+                true,
+                0.4,
+                0.3,
+                0.0,
+                0.6
+            ],
+            "color": "#233",
+            "bgcolor": "#355"
+        },
+        {
+            "id": 5,
+            "type": "Note",
+            "pos": [
+                80,
+                700
+            ],
+            "size": [
+                400,
+                100
+            ],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [],
+            "properties": {},
+            "widgets_values": [
+                "━━━━━ 🔵 MICROPHONE MODE ━━━━━━━━━━━━━━━━━━━━━\nClose-mic / WhatsApp audio / Phone recording\nEQ: HP@150Hz, LP@7kHz | Compressor: 5:1 ratio\n\n🔇 MUTE these 3 nodes for ROOM mode (select all → press M)"
+            ],
+            "color": "#1b4669",
+            "bgcolor": "#29699c"
+        },
+        {
+            "id": 6,
+            "type": "Music_Equalize",
+            "pos": [
+                500,
+                700
+            ],
+            "size": [
+                350,
+                250
+            ],
+            "flags": {},
+            "order": 5,
+            "mode": 2,
+            "inputs": [
+                {
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 3
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        4
+                    ]
+                }
+            ],
+            "title": "🔵 [MIC] EQ — HP@150Hz / LP@7kHz",
+            "properties": {
+                "Node name for S&R": "Music_Equalize"
+            },
+            "widgets_values": [
+                150,
+                -12.0,
+                1000,
+                0.0,
+                7000,
+                -12.0
+            ],
+            "color": "#1b4669",
+            "bgcolor": "#29699c"
+        },
+        {
+            "id": 7,
+            "type": "Music_Compressor",
+            "pos": [
+                900,
+                700
+            ],
+            "size": [
+                300,
+                200
+            ],
+            "flags": {},
+            "order": 6,
+            "mode": 2,
+            "inputs": [
+                {
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 4
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        5
+                    ]
+                }
+            ],
+            "title": "🔵 [MIC] Compressor — 5:1 Ratio",
+            "properties": {
+                "Node name for S&R": "Music_Compressor"
+            },
+            "widgets_values": [
+                0.4,
+                5.0
+            ],
+            "color": "#1b4669",
+            "bgcolor": "#29699c"
+        },
+        {
+            "id": 8,
+            "type": "Music_LufsNormalizer",
+            "pos": [
+                1250,
+                700
+            ],
+            "size": [
+                300,
+                150
+            ],
+            "flags": {},
+            "order": 7,
+            "mode": 2,
+            "inputs": [
+                {
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 5
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        6
+                    ]
+                },
+                {
+                    "name": "current_lufs",
+                    "type": "FLOAT",
+                    "links": null
+                }
+            ],
+            "title": "🔵 [MIC] LUFS Normalizer — -14 LUFS",
+            "properties": {
+                "Node name for S&R": "Music_LufsNormalizer"
+            },
+            "widgets_values": [
+                -14.0
+            ],
+            "color": "#1b4669",
+            "bgcolor": "#29699c"
+        },
+        {
+            "id": 14,
+            "type": "SaveAudio",
+            "pos": [
+                1650,
+                700
+            ],
+            "size": [
+                315,
+                100
+            ],
+            "flags": {},
+            "order": 13,
+            "mode": 2,
+            "inputs": [
+                {
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 6
+                }
+            ],
+            "outputs": [],
+            "title": "🔵 [MIC] Save Audio",
+            "properties": {
+                "Node name for S&R": "SaveAudio"
+            },
+            "widgets_values": [
+                "voice_clone_mic"
+            ],
+            "color": "#1b4669",
+            "bgcolor": "#29699c"
+        },
+        {
+            "id": 9,
+            "type": "Note",
+            "pos": [
+                80,
+                1050
+            ],
+            "size": [
+                400,
+                120
+            ],
+            "flags": {},
+            "order": 8,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [],
+            "properties": {},
+            "widgets_values": [
+                "━━━━━ 🟢 ROOM MODE (DEFAULT) ━━━━━━━━━━━━━━━━\nPhone 1.5m away / Reel / TikTok / Video\nReverb: 20% Wet, Small Room | Ambient Noise Mix\n\n🔇 MUTE these 4 nodes for MICROPHONE mode (select all → press M)\n\n💡 Load a room tone audio file in node 11 for realistic\n   ambient background. Use a 5-10s loop of room silence."
+            ],
+            "color": "#2a4b2a",
+            "bgcolor": "#3a6b3a"
+        },
+        {
+            "id": 10,
+            "type": "AudioQualityEffects",
+            "pos": [
+                500,
+                1100
+            ],
+            "size": [
+                400,
+                400
+            ],
+            "flags": {},
+            "order": 9,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 7
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "links": [
+                        10
+                    ]
+                }
+            ],
+            "title": "🟢 [ROOM] Reverb — Small Room",
+            "properties": {
+                "Node name for S&R": "AudioQualityEffects"
+            },
+            "widgets_values": [
+                0.0,
+                1.0,
+                "sox",
+                0.0,
+                true,
+                false,
+                true,
+                20.0,
+                30.0,
+                false,
+                0.3,
+                0.3
+            ],
+            "color": "#2a4b2a",
+            "bgcolor": "#3a6b3a"
+        },
+        {
+            "id": 11,
+            "type": "LoadAudio",
+            "pos": [
+                500,
+                1550
+            ],
+            "size": [
+                315,
+                124
+            ],
+            "flags": {},
+            "order": 10,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        8
+                    ]
+                }
+            ],
+            "title": "🟢 [ROOM] Ambient Room Tone (5-10s loop)",
+            "properties": {
+                "Node name for S&R": "LoadAudio"
+            },
+            "widgets_values": [
+                "room_tone.wav"
+            ],
+            "color": "#2a4b2a",
+            "bgcolor": "#3a6b3a"
+        },
+        {
+            "id": 15,
+            "type": "Music_Gain",
+            "pos": [
+                870,
+                1550
+            ],
+            "size": [
+                250,
+                150
+            ],
+            "flags": {},
+            "order": 14,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 8
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        9
+                    ]
+                }
+            ],
+            "title": "🟢 [ROOM] Noise Level — 2% Ambient",
+            "properties": {
+                "Node name for S&R": "Music_Gain"
+            },
+            "widgets_values": [
+                -18.0
+            ],
+            "color": "#2a4b2a",
+            "bgcolor": "#3a6b3a"
+        },
+        {
+            "id": 12,
+            "type": "Music_AudioMixer",
+            "pos": [
+                1000,
+                1100
+            ],
+            "size": [
+                300,
+                150
+            ],
+            "flags": {},
+            "order": 11,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "audio_1",
+                    "type": "AUDIO",
+                    "link": 10
+                },
+                {
+                    "name": "audio_2",
+                    "type": "AUDIO",
+                    "link": 9
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        11
+                    ]
+                }
+            ],
+            "title": "🟢 [ROOM] Mix Voice + Ambient",
+            "properties": {
+                "Node name for S&R": "Music_AudioMixer"
+            },
+            "widgets_values": [],
+            "color": "#2a4b2a",
+            "bgcolor": "#3a6b3a"
+        },
+        {
+            "id": 13,
+            "type": "Music_LufsNormalizer",
+            "pos": [
+                1350,
+                1100
+            ],
+            "size": [
+                300,
+                150
+            ],
+            "flags": {},
+            "order": 12,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 11
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        12
+                    ]
+                },
+                {
+                    "name": "current_lufs",
+                    "type": "FLOAT",
+                    "links": null
+                }
+            ],
+            "title": "🟢 [ROOM] LUFS Normalizer — -14 LUFS",
+            "properties": {
+                "Node name for S&R": "Music_LufsNormalizer"
+            },
+            "widgets_values": [
+                -14.0
+            ],
+            "color": "#2a4b2a",
+            "bgcolor": "#3a6b3a"
+        },
+        {
+            "id": 16,
+            "type": "SaveAudio",
+            "pos": [
+                1700,
+                1100
+            ],
+            "size": [
+                315,
+                100
+            ],
+            "flags": {},
+            "order": 15,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 12
+                }
+            ],
+            "outputs": [],
+            "title": "🟢 [ROOM] Save Audio",
+            "properties": {
+                "Node name for S&R": "SaveAudio"
+            },
+            "widgets_values": [
+                "voice_clone_room"
+            ],
+            "color": "#2a4b2a",
+            "bgcolor": "#3a6b3a"
+        },
+        {
+            "id": 17,
+            "type": "Note",
+            "pos": [
+                1000,
+                -200
+            ],
+            "size": [
+                450,
+                200
+            ],
+            "flags": {},
+            "order": 16,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [],
+            "properties": {},
+            "widgets_values": [
+                "🇧🇷 BRAZILIAN PORTUGUESE TUNING NOTES\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n• diffusion_steps = 35 (higher for PT-BR phoneme fidelity)\n• cfg_scale = 1.5 (stronger guidance for accent preservation)\n• temperature = 0.85 (stable PT-BR output)\n• top_p = 0.90 (tight nucleus for consistent pronunciation)\n• voice_speed = 0.98 (Brazilian speech flows slightly slower)\n• max_words_per_chunk = 200 (better prosody breaks in PT)\n• de-esser = 0.4 (PT-BR has softer sibilants than English)\n• naturalize_vocal = 0.6 (remove AI metallic artifacts)\n\n💡 Reference voice: Use 30s+ of clean PT-BR speech.\n   VibeVoice auto-resamples to 24kHz."
+            ],
+            "color": "#432",
+            "bgcolor": "#653"
+        },
+        {
+            "id": 18,
+            "type": "Note",
+            "pos": [
+                1550,
+                -200
+            ],
+            "size": [
+                350,
+                200
+            ],
+            "flags": {},
+            "order": 17,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [],
+            "properties": {},
+            "widgets_values": [
+                "📋 QUICK REFERENCE — VOICE MODES\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🔵 MICROPHONE MODE (close-mic)\n   Select all BLUE nodes → Press M to mute/unmute\n   Output: voice_clone_mic\n\n🟢 ROOM MODE (phone 1.5m away)\n   Select all GREEN nodes → Press M to mute/unmute\n   Output: voice_clone_room\n\n⚠️ Always keep ONE mode muted!\n   Running both will produce two outputs.\n\n🎨 Color Legend:\n   Blue (#29699c) = Microphone chain\n   Green (#3a6b3a) = Room chain\n   Dark Blue (#335) = Core TTS (always active)\n   Brown (#653) = Documentation notes"
+            ],
+            "color": "#432",
+            "bgcolor": "#653"
+        }
+    ],
+    "links": [
+        [
+            1,
+            2,
+            0,
+            3,
+            0,
+            "AUDIO"
+        ],
+        [
+            2,
+            3,
+            0,
+            4,
+            0,
+            "AUDIO"
+        ],
+        [
+            3,
+            4,
+            0,
+            6,
+            0,
+            "AUDIO"
+        ],
+        [
+            4,
+            6,
+            0,
+            7,
+            0,
+            "AUDIO"
+        ],
+        [
+            5,
+            7,
+            0,
+            8,
+            0,
+            "AUDIO"
+        ],
+        [
+            6,
+            8,
+            0,
+            14,
+            0,
+            "AUDIO"
+        ],
+        [
+            7,
+            4,
+            0,
+            10,
+            0,
+            "AUDIO"
+        ],
+        [
+            8,
+            11,
+            0,
+            15,
+            0,
+            "AUDIO"
+        ],
+        [
+            9,
+            15,
+            0,
+            12,
+            1,
+            "AUDIO"
+        ],
+        [
+            10,
+            10,
+            0,
+            12,
+            0,
+            "AUDIO"
+        ],
+        [
+            11,
+            12,
+            0,
+            13,
+            0,
+            "AUDIO"
+        ],
+        [
+            12,
+            13,
+            0,
+            16,
+            0,
+            "AUDIO"
+        ]
+    ],
+    "groups": [
+        {
+            "id": 1,
+            "title": "📥 INPUT — Reference Voice + Text",
+            "bounding": [
+                60,
+                20,
+                900,
+                620
+            ],
+            "color": "#533",
+            "font_size": 24
+        },
+        {
+            "id": 2,
+            "title": "🧹 VOCAL NATURALIZER — AI Artifact Removal",
+            "bounding": [
+                980,
+                20,
+                440,
+                620
+            ],
+            "color": "#355",
+            "font_size": 24
+        },
+        {
+            "id": 3,
+            "title": "🔵 MICROPHONE MODE — Close-mic / WhatsApp / Phone (MUTE for Room)",
+            "bounding": [
+                60,
+                640,
+                1950,
+                340
+            ],
+            "color": "#29699c",
+            "font_size": 24
+        },
+        {
+            "id": 4,
+            "title": "🟢 ROOM MODE — Phone 1.5m / Reel / TikTok / Video (DEFAULT ACTIVE)",
+            "bounding": [
+                60,
+                1000,
+                2000,
+                760
+            ],
+            "color": "#3a6b3a",
+            "font_size": 24
+        },
+        {
+            "id": 5,
+            "title": "📋 DOCUMENTATION",
+            "bounding": [
+                60,
+                -260,
+                1900,
+                260
+            ],
+            "color": "#653",
+            "font_size": 24
+        }
+    ],
+    "config": {},
+    "extra": {
+        "ds": {
+            "scale": 0.8,
+            "offset": [
+                0,
+                300
+            ]
+        },
+        "info": {
+            "name": "Voice Clone — Portuguese (BR)",
+            "author": "AI Workflow Builder",
+            "description": "Realistic voice cloning workflow for Brazilian Portuguese using VibeVoice 9B. Features two voice modes: Microphone (close-mic) and Room (1.5m phone). Optimized for PT-BR phonemes, prosody, and sibilants.",
+            "version": "1.0.0",
+            "category": "audio/tts/voice-cloning"
+        }
+    },
+    "version": 0.4
+}
