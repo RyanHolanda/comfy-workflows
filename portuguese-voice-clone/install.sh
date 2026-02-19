@@ -1,203 +1,62 @@
 #!/bin/bash
-# =============================================================================
-# 🇧🇷 Voice Clone — Portuguese (BR) Setup Script
-# Installs all custom nodes, models, and dependencies for voice cloning
-# Run from the root ComfyUI directory: /workspace/ComfyUI or ~/AI/ComfyUI
-# =============================================================================
+# Voice Clone — Portuguese (BR) Setup Script
+# Run from the root ComfyUI directory: /workspace/ComfyUI
 
 set -e
 
-# Enable high-performance mode for faster HuggingFace downloads
 export HF_XET_HIGH_PERFORMANCE=1
 export HF_XET_NUM_CONCURRENT_RANGE_GETS=32
 
-echo ""
-echo "============================================================"
-echo " 🎙️ Voice Clone — Portuguese (BR) Setup"
-echo "============================================================"
-echo ""
+echo "📦 Installing custom nodes..."
 
-# =============================================================================
-# STEP 1: Install Custom Nodes
-# =============================================================================
-echo "📦 Installing Custom Nodes..."
-
-# 1. VibeVoice-ComfyUI (TTS + Voice Cloning engine)
 if [ ! -d "custom_nodes/VibeVoice-ComfyUI" ]; then
-    echo "  → Cloning VibeVoice-ComfyUI..."
-    git clone https://github.com/Enemyx-net/VibeVoice-ComfyUI.git \
-        custom_nodes/VibeVoice-ComfyUI
+    git clone https://github.com/Enemyx-net/VibeVoice-ComfyUI.git custom_nodes/VibeVoice-ComfyUI
 else
-    echo "  → VibeVoice-ComfyUI already installed, pulling latest..."
     git -C custom_nodes/VibeVoice-ComfyUI pull
 fi
-if [ -f "custom_nodes/VibeVoice-ComfyUI/requirements.txt" ]; then
-    pip install -r custom_nodes/VibeVoice-ComfyUI/requirements.txt
-fi
+pip install -q -r custom_nodes/VibeVoice-ComfyUI/requirements.txt
 
-# 2. ComfyUI_MusicTools (EQ, Compressor, Reverb, Vocal Naturalizer, LUFS)
 if [ ! -d "custom_nodes/ComfyUI_MusicTools" ]; then
-    echo "  → Cloning ComfyUI_MusicTools..."
-    git clone https://github.com/jeankassio/ComfyUI_MusicTools.git \
-        custom_nodes/ComfyUI_MusicTools
+    git clone https://github.com/jeankassio/ComfyUI_MusicTools.git custom_nodes/ComfyUI_MusicTools
 else
-    echo "  → ComfyUI_MusicTools already installed, pulling latest..."
     git -C custom_nodes/ComfyUI_MusicTools pull
 fi
-if [ -f "custom_nodes/ComfyUI_MusicTools/requirements.txt" ]; then
-    pip install -r custom_nodes/ComfyUI_MusicTools/requirements.txt
-fi
+pip install -q -r custom_nodes/ComfyUI_MusicTools/requirements.txt
 
-# 3. ComfyUI-Audio_Quality_Enhancer (SoX-based reverb, echo, room effects)
 if [ ! -d "custom_nodes/ComfyUI-Audio_Quality_Enhancer" ]; then
-    echo "  → Cloning ComfyUI-Audio_Quality_Enhancer..."
-    git clone https://github.com/ShmuelRonen/ComfyUI-Audio_Quality_Enhancer.git \
-        custom_nodes/ComfyUI-Audio_Quality_Enhancer
+    git clone https://github.com/ShmuelRonen/ComfyUI-Audio_Quality_Enhancer.git custom_nodes/ComfyUI-Audio_Quality_Enhancer
 else
-    echo "  → ComfyUI-Audio_Quality_Enhancer already installed, pulling latest..."
     git -C custom_nodes/ComfyUI-Audio_Quality_Enhancer pull
 fi
-if [ -f "custom_nodes/ComfyUI-Audio_Quality_Enhancer/requirements.txt" ]; then
-    pip install -r custom_nodes/ComfyUI-Audio_Quality_Enhancer/requirements.txt
-fi
+pip install -q -r custom_nodes/ComfyUI-Audio_Quality_Enhancer/requirements.txt
 
-echo "✅ Custom Nodes installed."
+echo "✅ Custom nodes installed."
 
-# =============================================================================
-# STEP 2: Install SoX (required by Audio_Quality_Enhancer for reverb/echo)
-# =============================================================================
-echo ""
-echo "🔧 Checking SoX installation..."
-
-if command -v sox &> /dev/null; then
-    echo "  → SoX already installed: $(sox --version 2>&1 | head -1)"
-else
-    echo "  → SoX not found, attempting to install..."
+echo "🔧 Installing SoX..."
+if ! command -v sox &> /dev/null; then
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        # Linux (RunPod, vast.ai, etc.)
         apt-get update -qq && apt-get install -y -qq sox libsox-fmt-all
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        # macOS
-        if command -v brew &> /dev/null; then
-            brew install sox
-        else
-            echo "  ⚠️  Please install SoX manually: brew install sox"
-        fi
-    else
-        echo "  ⚠️  Please install SoX manually for your platform."
+        brew install sox
     fi
 fi
+echo "✅ SoX ready."
 
-echo "✅ SoX check complete."
+echo "📥 Downloading VibeVoice-Large..."
+mkdir -p models/vibevoice/VibeVoice-Large models/vibevoice/tokenizer
 
-# =============================================================================
-# STEP 3: Create model directories and download VibeVoice models
-# =============================================================================
-echo ""
-echo "📥 Downloading VibeVoice-Large model (~17 GB)..."
-echo "   This is the best model for non-English languages like PT-BR."
-echo ""
+hf download aoi-ot/VibeVoice-Large \
+    --local-dir models/vibevoice/VibeVoice-Large \
+    --repo-type model
 
-mkdir -p models/vibevoice
+hf download Qwen/Qwen2.5-1.5B \
+    --local-dir models/vibevoice/tokenizer \
+    --include "tokenizer.json" "tokenizer_config.json" "vocab.json" "merges.txt"
 
-# Download VibeVoice models and required Qwen tokenizer
-if command -v huggingface-cli &> /dev/null; then
-    echo "  → Downloading VibeVoice-Large..."
-    huggingface-cli download SWivid/VibeVoice --local-dir models/vibevoice --include "VibeVoice-Large/*"
-    
-    echo "  → Downloading REQUIRED Qwen tokenizer..."
-    mkdir -p models/vibevoice/tokenizer
-    huggingface-cli download Qwen/Qwen2.5-1.5B --local-dir models/vibevoice/tokenizer --include "tokenizer.json" "tokenizer_config.json" "vocab.json" "merges.txt"
-else
-    echo "  ⚠️  huggingface-cli not found. Please install it: pip install huggingface_hub[cli]"
-    echo "  ℹ️  The models and tokenizer must be in models/vibevoice/ to work."
-fi
+echo "✅ Models downloaded."
 
-echo "✅ Model setup complete."
-
-# =============================================================================
-# STEP 4: Create a sample room tone placeholder
-# =============================================================================
-echo ""
-echo "🔊 Creating placeholder room tone..."
-
-mkdir -p input
-
-if [ ! -f "input/room_tone.wav" ]; then
-    # Create a 5-second silent WAV as placeholder (user should replace with real room tone)
-    python3 -c "
-import numpy as np
-try:
-    import soundfile as sf
-    # Generate 5 seconds of very quiet pink noise (simulates room ambient)
-    sr = 24000
-    duration = 5
-    samples = sr * duration
-    # Pink noise approximation
-    white = np.random.randn(samples).astype(np.float32)
-    # Simple 1/f filter
-    from scipy.signal import lfilter
-    b = [0.049922035, -0.095993537, 0.050612699, -0.004709510]
-    a = [1.0, -2.494956002, 2.017265875, -0.522189400]
-    pink = lfilter(b, a, white)
-    # Very quiet (-40 dB)
-    pink = pink * 0.01
-    sf.write('input/room_tone.wav', pink, sr)
-    print('  → Created room_tone.wav (5s pink noise at -40dB)')
-except ImportError:
-    # Fallback: create silence
-    import wave, struct
-    sr = 24000
-    duration = 5
-    with wave.open('input/room_tone.wav', 'w') as f:
-        f.setnchannels(1)
-        f.setsampwidth(2)
-        f.setframerate(sr)
-        for _ in range(sr * duration):
-            f.writeframes(struct.pack('<h', int(np.random.randn() * 30)))
-    print('  → Created room_tone.wav (5s quiet noise)')
-" 2>/dev/null || echo "  ℹ️  Could not create room_tone.wav — please add your own."
-
-    echo "  💡 Replace input/room_tone.wav with a real recording of room silence"
-    echo "     (5-10 seconds of your room's ambient sound with no speech)."
-else
-    echo "  → room_tone.wav already exists."
-fi
-
-echo "✅ Room tone ready."
-
-# =============================================================================
-# STEP 5: Download and place the workflow JSON
-# =============================================================================
-echo ""
-echo "📂 Downloading Voice Clone workflow..."
-
+echo "📂 Downloading workflow..."
 mkdir -p user/default/workflows
-
 curl -L -o user/default/workflows/voice-clone-portuguese.json \
     https://raw.githubusercontent.com/RyanHolanda/comfy-workflows/refs/heads/main/portuguese-voice-clone/portuguese-voice-clone.json
-
-echo "✅ Workflow downloaded to user/default/workflows/voice-clone-portuguese.json"
-
-# =============================================================================
-# DONE
-# =============================================================================
-echo ""
-echo "============================================================"
-echo " ✅ Setup complete! Everything is ready."
-echo ""
-echo " 📋 Next steps:"
-echo "   1. Start ComfyUI"
-echo "   2. Open workflow: voice-clone-portuguese.json"
-echo "   3. Load your reference voice in the '🎤 Reference Voice' node"
-echo "   4. Type your Portuguese text in the VibeVoice node"
-echo "   5. Choose voice mode by muting the correct chain:"
-echo "      • MICROPHONE: Unmute 🔵 blue nodes, mute 🟢 green nodes"
-echo "      • ROOM:       Unmute 🟢 green nodes, mute 🔵 blue nodes"
-echo "   6. Queue prompt and wait for generation!"
-echo ""
-echo " 💡 Tips:"
-echo "   • Use 30+ seconds of clear PT-BR speech as reference"
-echo "   • Replace input/room_tone.wav with real room ambient"
-echo "   • First run downloads the VibeVoice model (~17 GB)"
-echo "============================================================"
+echo "✅ Workflow ready."
