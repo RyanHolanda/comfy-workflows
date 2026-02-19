@@ -874,7 +874,7 @@
         },
         {
             "id": 137,
-            "type": "DownloadAndLoadWav2VecModel",
+            "type": "Wav2VecModelLoader",
             "pos": [
                 540.5593867565296,
                 -999.3720101087068
@@ -888,29 +888,11 @@
             "mode": 0,
             "inputs": [
                 {
-                    "localized_name": "model",
-                    "name": "model",
+                    "localized_name": "model_name",
+                    "name": "model_name",
                     "type": "COMBO",
                     "widget": {
-                        "name": "model"
-                    },
-                    "link": null
-                },
-                {
-                    "localized_name": "base_precision",
-                    "name": "base_precision",
-                    "type": "COMBO",
-                    "widget": {
-                        "name": "base_precision"
-                    },
-                    "link": null
-                },
-                {
-                    "localized_name": "load_device",
-                    "name": "load_device",
-                    "type": "COMBO",
-                    "widget": {
-                        "name": "load_device"
+                        "name": "model_name"
                     },
                     "link": null
                 }
@@ -926,12 +908,12 @@
                 }
             ],
             "properties": {
-                "Node name for S&R": "DownloadAndLoadWav2VecModel",
+                "Node name for S&R": "Wav2VecModelLoader",
                 "cnr_id": "ComfyUI-WanVideoWrapper",
                 "ver": "058286fc0f3b0651a2f6b68309df3f06e8332cc0"
             },
             "widgets_values": [
-                "facebook/wav2vec2-large-xlsr-53-portuguese",
+                "facebook/wav2vec2-large-xlsr-53-portuguese/pytorch_model.bin",
                 "fp16",
                 "main_device"
             ]
