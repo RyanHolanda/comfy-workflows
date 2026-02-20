@@ -50,6 +50,10 @@ else
     echo "ComfyUI-LatentSyncWrapper already cloned, pulling latest..."
     git -C custom_nodes/ComfyUI-LatentSyncWrapper pull
 fi
+# Fix strict mediapipe version pin before installing
+sed -i 's/mediapipe==0.10.11/mediapipe>=0.10.11/g' custom_nodes/ComfyUI-LatentSyncWrapper/requirements.txt 2>/dev/null || \
+    sed -i '' 's/mediapipe==0.10.11/mediapipe>=0.10.11/g' custom_nodes/ComfyUI-LatentSyncWrapper/requirements.txt
+pip install -r custom_nodes/ComfyUI-LatentSyncWrapper/requirements.txt
 
 # 3. comfyui-kjnodes (for SetNode, GetNode, INTConstant, etc.)
 if [ ! -d "custom_nodes/comfyui-kjnodes" ]; then
