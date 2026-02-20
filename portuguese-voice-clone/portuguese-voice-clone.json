@@ -1,7 +1,7 @@
 {
     "id": "a1b2c3d4-voice-clone-ptbr-2026",
     "revision": 0,
-    "last_node_id": 15,
+    "last_node_id": 18,
     "last_link_id": 14,
     "nodes": [
         {
@@ -28,89 +28,6 @@
             "bgcolor": "#653"
         },
         {
-            "id": 2,
-            "type": "LoadAudio",
-            "pos": [
-                80,
-                80
-            ],
-            "size": [
-                315,
-                124
-            ],
-            "flags": {},
-            "order": 1,
-            "mode": 0,
-            "inputs": [],
-            "outputs": [
-                {
-                    "name": "AUDIO",
-                    "type": "AUDIO",
-                    "links": [
-                        1
-                    ]
-                }
-            ],
-            "title": "🎤 Reference Voice (30s+ recommended)",
-            "properties": {
-                "Node name for S&R": "LoadAudio"
-            },
-            "widgets_values": [
-                "audio.wav"
-            ],
-            "color": "#322",
-            "bgcolor": "#533"
-        },
-        {
-            "id": 3,
-            "type": "VibeVoiceSingleSpeakerNode",
-            "pos": [
-                500,
-                80
-            ],
-            "size": [
-                400,
-                500
-            ],
-            "flags": {},
-            "order": 2,
-            "mode": 0,
-            "inputs": [
-                {
-                    "name": "voice_to_clone",
-                    "type": "AUDIO",
-                    "link": 1
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "AUDIO",
-                    "type": "AUDIO",
-                    "links": [
-                        2
-                    ]
-                }
-            ],
-            "title": "🇧🇷 VibeVoice TTS — Portuguese",
-            "properties": {
-                "Node name for S&R": "VibeVoiceSingleSpeakerNode"
-            },
-            "widgets_values": [
-                "Digite o texto em português aqui.\n\nExemplo: Olá, tudo bem? Eu sou a sua nova influenciadora digital e estou aqui para conversar com vocês sobre os melhores conteúdos!",
-                "VibeVoice-Large",
-                "auto",
-                "full precision",
-                true,
-                20,
-                42,
-                "fixed",
-                2.0,
-                false
-            ],
-            "color": "#223",
-            "bgcolor": "#335"
-        },
-        {
             "id": 4,
             "type": "Music_MasterAudioEnhancement",
             "pos": [
@@ -122,17 +39,145 @@
                 550
             ],
             "flags": {},
-            "order": 3,
+            "order": 7,
             "mode": 0,
             "inputs": [
                 {
+                    "localized_name": "audio",
                     "name": "audio",
                     "type": "AUDIO",
                     "link": 2
+                },
+                {
+                    "localized_name": "denoise_mode",
+                    "name": "denoise_mode",
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "denoise_mode"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "ai_enhance",
+                    "name": "ai_enhance",
+                    "type": "BOOLEAN",
+                    "widget": {
+                        "name": "ai_enhance"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "ai_mix",
+                    "name": "ai_mix",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "ai_mix"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "denoise_intensity",
+                    "name": "denoise_intensity",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "denoise_intensity"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "eq_low_gain",
+                    "name": "eq_low_gain",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "eq_low_gain"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "eq_mid_gain",
+                    "name": "eq_mid_gain",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "eq_mid_gain"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "eq_high_gain",
+                    "name": "eq_high_gain",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "eq_high_gain"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "clarity_amount",
+                    "name": "clarity_amount",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "clarity_amount"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "target_loudness",
+                    "name": "target_loudness",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "target_loudness"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "vocal_enhance",
+                    "name": "vocal_enhance",
+                    "type": "BOOLEAN",
+                    "widget": {
+                        "name": "vocal_enhance"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "deesser_amount",
+                    "name": "deesser_amount",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "deesser_amount"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "breath_smooth",
+                    "name": "breath_smooth",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "breath_smooth"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "reverb_amount",
+                    "name": "reverb_amount",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "reverb_amount"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "naturalize_vocal",
+                    "name": "naturalize_vocal",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "naturalize_vocal"
+                    },
+                    "link": null
                 }
             ],
             "outputs": [
                 {
+                    "localized_name": "AUDIO",
                     "name": "AUDIO",
                     "type": "AUDIO",
                     "links": [
@@ -143,6 +188,8 @@
             ],
             "title": "🧹 Vocal Naturalizer (Remove AI Artifacts)",
             "properties": {
+                "aux_id": "jeankassio/ComfyUI_MusicTools",
+                "ver": "f3d86efce3f6a1b12de2c30605b03d86a12ac76c",
                 "Node name for S&R": "Music_MasterAudioEnhancement"
             },
             "widgets_values": [
@@ -150,15 +197,15 @@
                 false,
                 0.6,
                 0.3,
-                0.0,
+                0,
                 0.5,
                 1.5,
                 0.3,
-                -6.0,
+                -6,
                 true,
                 0.4,
                 0.3,
-                0.0,
+                0,
                 0.6
             ],
             "color": "#233",
@@ -176,176 +223,13 @@
                 100
             ],
             "flags": {},
-            "order": 4,
+            "order": 1,
             "mode": 0,
             "inputs": [],
             "outputs": [],
             "properties": {},
             "widgets_values": [
                 "━━━━━ 🔵 MICROPHONE MODE ━━━━━━━━━━━━━━━━━━━━━\nClose-mic / WhatsApp audio / Phone recording\nEQ: HP@150Hz, LP@7kHz | Compressor: 5:1 ratio\n\n🔇 MUTE these 3 nodes for ROOM mode (select all → press M)"
-            ],
-            "color": "#1b4669",
-            "bgcolor": "#29699c"
-        },
-        {
-            "id": 6,
-            "type": "Music_Equalize",
-            "pos": [
-                500,
-                700
-            ],
-            "size": [
-                350,
-                250
-            ],
-            "flags": {},
-            "order": 5,
-            "mode": 2,
-            "inputs": [
-                {
-                    "name": "audio",
-                    "type": "AUDIO",
-                    "link": 3
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "AUDIO",
-                    "type": "AUDIO",
-                    "links": [
-                        4
-                    ]
-                }
-            ],
-            "title": "🔵 [MIC] EQ — HP@150Hz / LP@7kHz",
-            "properties": {
-                "Node name for S&R": "Music_Equalize"
-            },
-            "widgets_values": [
-                150,
-                -12.0,
-                1000,
-                0.0,
-                7000,
-                -12.0
-            ],
-            "color": "#1b4669",
-            "bgcolor": "#29699c"
-        },
-        {
-            "id": 7,
-            "type": "Music_Compressor",
-            "pos": [
-                900,
-                700
-            ],
-            "size": [
-                300,
-                200
-            ],
-            "flags": {},
-            "order": 6,
-            "mode": 2,
-            "inputs": [
-                {
-                    "name": "audio",
-                    "type": "AUDIO",
-                    "link": 4
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "AUDIO",
-                    "type": "AUDIO",
-                    "links": [
-                        5
-                    ]
-                }
-            ],
-            "title": "🔵 [MIC] Compressor — 5:1 Ratio",
-            "properties": {
-                "Node name for S&R": "Music_Compressor"
-            },
-            "widgets_values": [
-                0.4,
-                5.0
-            ],
-            "color": "#1b4669",
-            "bgcolor": "#29699c"
-        },
-        {
-            "id": 8,
-            "type": "Music_LufsNormalizer",
-            "pos": [
-                1250,
-                700
-            ],
-            "size": [
-                300,
-                150
-            ],
-            "flags": {},
-            "order": 7,
-            "mode": 2,
-            "inputs": [
-                {
-                    "name": "audio",
-                    "type": "AUDIO",
-                    "link": 5
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "AUDIO",
-                    "type": "AUDIO",
-                    "links": [
-                        6
-                    ]
-                },
-                {
-                    "name": "current_lufs",
-                    "type": "FLOAT",
-                    "links": null
-                }
-            ],
-            "title": "🔵 [MIC] LUFS Normalizer — -14 LUFS",
-            "properties": {
-                "Node name for S&R": "Music_LufsNormalizer"
-            },
-            "widgets_values": [
-                -14.0
-            ],
-            "color": "#1b4669",
-            "bgcolor": "#29699c"
-        },
-        {
-            "id": 14,
-            "type": "SaveAudio",
-            "pos": [
-                1650,
-                700
-            ],
-            "size": [
-                315,
-                100
-            ],
-            "flags": {},
-            "order": 13,
-            "mode": 2,
-            "inputs": [
-                {
-                    "name": "audio",
-                    "type": "AUDIO",
-                    "link": 6
-                }
-            ],
-            "outputs": [],
-            "title": "🔵 [MIC] Save Audio",
-            "properties": {
-                "Node name for S&R": "SaveAudio"
-            },
-            "widgets_values": [
-                "voice_clone_mic"
             ],
             "color": "#1b4669",
             "bgcolor": "#29699c"
@@ -362,64 +246,13 @@
                 120
             ],
             "flags": {},
-            "order": 8,
-            "mode": 0,
+            "order": 2,
+            "mode": 4,
             "inputs": [],
             "outputs": [],
             "properties": {},
             "widgets_values": [
                 "━━━━━ 🟢 ROOM MODE (DEFAULT) ━━━━━━━━━━━━━━━━\nPhone 1.5m away / Reel / TikTok / Video\nReverb: 25% Wet, Small Room\n\n🔇 MUTE these 3 green nodes for MICROPHONE mode (select all → press M)"
-            ],
-            "color": "#2a4b2a",
-            "bgcolor": "#3a6b3a"
-        },
-        {
-            "id": 10,
-            "type": "AudioQualityEffects",
-            "pos": [
-                500,
-                1100
-            ],
-            "size": [
-                400,
-                400
-            ],
-            "flags": {},
-            "order": 9,
-            "mode": 0,
-            "inputs": [
-                {
-                    "name": "audio",
-                    "type": "AUDIO",
-                    "link": 7
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "audio",
-                    "type": "AUDIO",
-                    "links": [
-                        10
-                    ]
-                }
-            ],
-            "title": "🟢 [ROOM] Reverb — Small Room",
-            "properties": {
-                "Node name for S&R": "AudioQualityEffects"
-            },
-            "widgets_values": [
-                0.0,
-                1.0,
-                "sox",
-                0.0,
-                true,
-                false,
-                true,
-                25.0,
-                35.0,
-                false,
-                0.1,
-                0.1
             ],
             "color": "#2a4b2a",
             "bgcolor": "#3a6b3a"
@@ -432,21 +265,32 @@
                 1100
             ],
             "size": [
-                300,
+                313.441015625,
                 150
             ],
             "flags": {},
-            "order": 12,
-            "mode": 0,
+            "order": 11,
+            "mode": 4,
             "inputs": [
                 {
+                    "localized_name": "audio",
                     "name": "audio",
                     "type": "AUDIO",
                     "link": 10
+                },
+                {
+                    "localized_name": "target_lufs",
+                    "name": "target_lufs",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "target_lufs"
+                    },
+                    "link": null
                 }
             ],
             "outputs": [
                 {
+                    "localized_name": "AUDIO",
                     "name": "AUDIO",
                     "type": "AUDIO",
                     "links": [
@@ -454,17 +298,20 @@
                     ]
                 },
                 {
-                    "name": "current_lufs",
+                    "localized_name": "CURRENT_LUFS",
+                    "name": "CURRENT_LUFS",
                     "type": "FLOAT",
                     "links": null
                 }
             ],
             "title": "🟢 [ROOM] LUFS Normalizer — -14 LUFS",
             "properties": {
+                "aux_id": "jeankassio/ComfyUI_MusicTools",
+                "ver": "f3d86efce3f6a1b12de2c30605b03d86a12ac76c",
                 "Node name for S&R": "Music_LufsNormalizer"
             },
             "widgets_values": [
-                -14.0
+                -14
             ],
             "color": "#2a4b2a",
             "bgcolor": "#3a6b3a"
@@ -478,21 +325,42 @@
             ],
             "size": [
                 315,
-                100
+                112
             ],
             "flags": {},
-            "order": 15,
-            "mode": 0,
+            "order": 13,
+            "mode": 4,
             "inputs": [
                 {
+                    "localized_name": "audio",
                     "name": "audio",
                     "type": "AUDIO",
                     "link": 12
+                },
+                {
+                    "localized_name": "filename_prefix",
+                    "name": "filename_prefix",
+                    "type": "STRING",
+                    "widget": {
+                        "name": "filename_prefix"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "audioUI",
+                    "name": "audioUI",
+                    "type": "AUDIO_UI",
+                    "widget": {
+                        "name": "audioUI"
+                    },
+                    "link": null
                 }
             ],
             "outputs": [],
             "title": "🟢 [ROOM] Save Audio",
             "properties": {
+                "cnr_id": "comfy-core",
+                "ver": "0.13.0",
                 "Node name for S&R": "SaveAudio"
             },
             "widgets_values": [
@@ -513,7 +381,7 @@
                 200
             ],
             "flags": {},
-            "order": 16,
+            "order": 3,
             "mode": 0,
             "inputs": [],
             "outputs": [],
@@ -536,7 +404,7 @@
                 200
             ],
             "flags": {},
-            "order": 17,
+            "order": 4,
             "mode": 0,
             "inputs": [],
             "outputs": [],
@@ -546,6 +414,711 @@
             ],
             "color": "#432",
             "bgcolor": "#653"
+        },
+        {
+            "id": 10,
+            "type": "AudioQualityEffects",
+            "pos": [
+                500,
+                1100
+            ],
+            "size": [
+                400,
+                400
+            ],
+            "flags": {},
+            "order": 9,
+            "mode": 4,
+            "inputs": [
+                {
+                    "localized_name": "audio",
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 7
+                },
+                {
+                    "localized_name": "pitch_shift",
+                    "name": "pitch_shift",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "pitch_shift"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "speed_factor",
+                    "name": "speed_factor",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "speed_factor"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "sox_path",
+                    "name": "sox_path",
+                    "shape": 7,
+                    "type": "STRING",
+                    "widget": {
+                        "name": "sox_path"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "gain_db",
+                    "name": "gain_db",
+                    "shape": 7,
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "gain_db"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "use_limiter",
+                    "name": "use_limiter",
+                    "shape": 7,
+                    "type": "BOOLEAN",
+                    "widget": {
+                        "name": "use_limiter"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "normalize_audio",
+                    "name": "normalize_audio",
+                    "shape": 7,
+                    "type": "BOOLEAN",
+                    "widget": {
+                        "name": "normalize_audio"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "add_reverb",
+                    "name": "add_reverb",
+                    "shape": 7,
+                    "type": "BOOLEAN",
+                    "widget": {
+                        "name": "add_reverb"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "reverb_amount",
+                    "name": "reverb_amount",
+                    "shape": 7,
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "reverb_amount"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "reverb_room_scale",
+                    "name": "reverb_room_scale",
+                    "shape": 7,
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "reverb_room_scale"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "add_echo",
+                    "name": "add_echo",
+                    "shape": 7,
+                    "type": "BOOLEAN",
+                    "widget": {
+                        "name": "add_echo"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "echo_delay",
+                    "name": "echo_delay",
+                    "shape": 7,
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "echo_delay"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "echo_decay",
+                    "name": "echo_decay",
+                    "shape": 7,
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "echo_decay"
+                    },
+                    "link": null
+                }
+            ],
+            "outputs": [
+                {
+                    "localized_name": "audio",
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "links": [
+                        10
+                    ]
+                }
+            ],
+            "title": "🟢 [ROOM] Reverb — Small Room",
+            "properties": {
+                "aux_id": "ShmuelRonen/ComfyUI-Audio_Quality_Enhancer",
+                "ver": "7ddcfd8c660e9dfad6299af21e3a182c60e81a0f",
+                "Node name for S&R": "AudioQualityEffects"
+            },
+            "widgets_values": [
+                0,
+                1,
+                "sox",
+                0,
+                true,
+                false,
+                true,
+                40.265884892811066,
+                49.594242963416605,
+                false,
+                0.1,
+                0.1
+            ],
+            "color": "#2a4b2a",
+            "bgcolor": "#3a6b3a"
+        },
+        {
+            "id": 8,
+            "type": "Music_LufsNormalizer",
+            "pos": [
+                1250,
+                700
+            ],
+            "size": [
+                300,
+                150
+            ],
+            "flags": {},
+            "order": 12,
+            "mode": 0,
+            "inputs": [
+                {
+                    "localized_name": "audio",
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 5
+                },
+                {
+                    "localized_name": "target_lufs",
+                    "name": "target_lufs",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "target_lufs"
+                    },
+                    "link": null
+                }
+            ],
+            "outputs": [
+                {
+                    "localized_name": "AUDIO",
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        6
+                    ]
+                },
+                {
+                    "localized_name": "CURRENT_LUFS",
+                    "name": "CURRENT_LUFS",
+                    "type": "FLOAT",
+                    "links": null
+                }
+            ],
+            "title": "🔵 [MIC] LUFS Normalizer — -14 LUFS",
+            "properties": {
+                "aux_id": "jeankassio/ComfyUI_MusicTools",
+                "ver": "f3d86efce3f6a1b12de2c30605b03d86a12ac76c",
+                "Node name for S&R": "Music_LufsNormalizer"
+            },
+            "widgets_values": [
+                -14
+            ],
+            "color": "#1b4669",
+            "bgcolor": "#29699c"
+        },
+        {
+            "id": 14,
+            "type": "SaveAudio",
+            "pos": [
+                1650,
+                700
+            ],
+            "size": [
+                315,
+                112
+            ],
+            "flags": {},
+            "order": 14,
+            "mode": 0,
+            "inputs": [
+                {
+                    "localized_name": "audio",
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 6
+                },
+                {
+                    "localized_name": "filename_prefix",
+                    "name": "filename_prefix",
+                    "type": "STRING",
+                    "widget": {
+                        "name": "filename_prefix"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "audioUI",
+                    "name": "audioUI",
+                    "type": "AUDIO_UI",
+                    "widget": {
+                        "name": "audioUI"
+                    },
+                    "link": null
+                }
+            ],
+            "outputs": [],
+            "title": "🔵 [MIC] Save Audio",
+            "properties": {
+                "cnr_id": "comfy-core",
+                "ver": "0.13.0",
+                "Node name for S&R": "SaveAudio"
+            },
+            "widgets_values": [
+                "voice_clone_mic"
+            ],
+            "color": "#1b4669",
+            "bgcolor": "#29699c"
+        },
+        {
+            "id": 3,
+            "type": "VibeVoiceSingleSpeakerNode",
+            "pos": [
+                500,
+                80
+            ],
+            "size": [
+                400,
+                500
+            ],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+                {
+                    "localized_name": "voice_to_clone",
+                    "name": "voice_to_clone",
+                    "shape": 7,
+                    "type": "AUDIO",
+                    "link": 1
+                },
+                {
+                    "localized_name": "lora",
+                    "name": "lora",
+                    "shape": 7,
+                    "type": "LORA_CONFIG",
+                    "link": null
+                },
+                {
+                    "localized_name": "text",
+                    "name": "text",
+                    "type": "STRING",
+                    "widget": {
+                        "name": "text"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "model",
+                    "name": "model",
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "model"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "attention_type",
+                    "name": "attention_type",
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "attention_type"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "quantize_llm",
+                    "name": "quantize_llm",
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "quantize_llm"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "free_memory_after_generate",
+                    "name": "free_memory_after_generate",
+                    "type": "BOOLEAN",
+                    "widget": {
+                        "name": "free_memory_after_generate"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "diffusion_steps",
+                    "name": "diffusion_steps",
+                    "type": "INT",
+                    "widget": {
+                        "name": "diffusion_steps"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "seed",
+                    "name": "seed",
+                    "type": "INT",
+                    "widget": {
+                        "name": "seed"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "cfg_scale",
+                    "name": "cfg_scale",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "cfg_scale"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "use_sampling",
+                    "name": "use_sampling",
+                    "type": "BOOLEAN",
+                    "widget": {
+                        "name": "use_sampling"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "temperature",
+                    "name": "temperature",
+                    "shape": 7,
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "temperature"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "top_p",
+                    "name": "top_p",
+                    "shape": 7,
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "top_p"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "max_words_per_chunk",
+                    "name": "max_words_per_chunk",
+                    "shape": 7,
+                    "type": "INT",
+                    "widget": {
+                        "name": "max_words_per_chunk"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "voice_speed_factor",
+                    "name": "voice_speed_factor",
+                    "shape": 7,
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "voice_speed_factor"
+                    },
+                    "link": null
+                }
+            ],
+            "outputs": [
+                {
+                    "localized_name": "audio",
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "links": [
+                        2
+                    ]
+                }
+            ],
+            "title": "🇧🇷 VibeVoice TTS — Portuguese",
+            "properties": {
+                "cnr_id": "VibeVoice-ComfyUI",
+                "ver": "b0a8efc23c9d902d7ebd8fe3f79515a23d343bc2",
+                "Node name for S&R": "VibeVoiceSingleSpeakerNode",
+                "aux_id": "Enemyx-net/VibeVoice-ComfyUI"
+            },
+            "widgets_values": [
+                "O que era pra fazer? Se é novecentos, ele disse que cinquenta reais de juros, então, se é novecentos, eu tinha que fazer uma ótica mil reais, entendeu? Porque aí ele não ia pagar os juros, ele tá saindo no prejuízo também, porque ele é anta!",
+                "VibeVoice-Large",
+                "auto",
+                "full precision",
+                true,
+                20,
+                42,
+                "fixed",
+                2.2,
+                true,
+                0.95,
+                0.95,
+                250,
+                1
+            ],
+            "color": "#223",
+            "bgcolor": "#335"
+        },
+        {
+            "id": 2,
+            "type": "LoadAudio",
+            "pos": [
+                80,
+                80
+            ],
+            "size": [
+                318.280859375,
+                136
+            ],
+            "flags": {},
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+                {
+                    "localized_name": "audio",
+                    "name": "audio",
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "audio"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "audioUI",
+                    "name": "audioUI",
+                    "type": "AUDIO_UI",
+                    "widget": {
+                        "name": "audioUI"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "choose file to upload",
+                    "name": "upload",
+                    "type": "AUDIOUPLOAD",
+                    "widget": {
+                        "name": "upload"
+                    },
+                    "link": null
+                }
+            ],
+            "outputs": [
+                {
+                    "localized_name": "AUDIO",
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        1
+                    ]
+                }
+            ],
+            "title": "🎤 Reference Voice (30s+ recommended)",
+            "properties": {
+                "cnr_id": "comfy-core",
+                "ver": "0.13.0",
+                "Node name for S&R": "LoadAudio"
+            },
+            "widgets_values": [
+                "ElevenLabs_2026-02-17T17_13_08_Roberta - Casual, Engaging and Clear_pvc_sp119_s32_sb73_se0_b_m2.mp3",
+                null,
+                null
+            ],
+            "color": "#322",
+            "bgcolor": "#533"
+        },
+        {
+            "id": 7,
+            "type": "Music_Compressor",
+            "pos": [
+                900,
+                700
+            ],
+            "size": [
+                300,
+                200
+            ],
+            "flags": {},
+            "order": 10,
+            "mode": 0,
+            "inputs": [
+                {
+                    "localized_name": "audio",
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 4
+                },
+                {
+                    "localized_name": "threshold",
+                    "name": "threshold",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "threshold"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "ratio",
+                    "name": "ratio",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "ratio"
+                    },
+                    "link": null
+                }
+            ],
+            "outputs": [
+                {
+                    "localized_name": "AUDIO",
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        5
+                    ]
+                }
+            ],
+            "title": "🔵 [MIC] Compressor — 5:1 Ratio",
+            "properties": {
+                "aux_id": "jeankassio/ComfyUI_MusicTools",
+                "ver": "f3d86efce3f6a1b12de2c30605b03d86a12ac76c",
+                "Node name for S&R": "Music_Compressor"
+            },
+            "widgets_values": [
+                0.41,
+                8
+            ],
+            "color": "#1b4669",
+            "bgcolor": "#29699c"
+        },
+        {
+            "id": 6,
+            "type": "Music_Equalize",
+            "pos": [
+                500,
+                700
+            ],
+            "size": [
+                350,
+                250
+            ],
+            "flags": {},
+            "order": 8,
+            "mode": 0,
+            "inputs": [
+                {
+                    "localized_name": "audio",
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 3
+                },
+                {
+                    "localized_name": "bass_freq",
+                    "name": "bass_freq",
+                    "type": "INT",
+                    "widget": {
+                        "name": "bass_freq"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "bass_gain",
+                    "name": "bass_gain",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "bass_gain"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "mid_freq",
+                    "name": "mid_freq",
+                    "type": "INT",
+                    "widget": {
+                        "name": "mid_freq"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "mid_gain",
+                    "name": "mid_gain",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "mid_gain"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "treble_freq",
+                    "name": "treble_freq",
+                    "type": "INT",
+                    "widget": {
+                        "name": "treble_freq"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "treble_gain",
+                    "name": "treble_gain",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "treble_gain"
+                    },
+                    "link": null
+                }
+            ],
+            "outputs": [
+                {
+                    "localized_name": "AUDIO",
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        4
+                    ]
+                }
+            ],
+            "title": "🔵 [MIC] EQ — HP@150Hz / LP@7kHz",
+            "properties": {
+                "aux_id": "jeankassio/ComfyUI_MusicTools",
+                "ver": "f3d86efce3f6a1b12de2c30605b03d86a12ac76c",
+                "Node name for S&R": "Music_Equalize"
+            },
+            "widgets_values": [
+                120,
+                5,
+                1500,
+                1,
+                3000,
+                -8
+            ],
+            "color": "#1b4669",
+            "bgcolor": "#29699c"
         }
     ],
     "links": [
@@ -633,7 +1206,8 @@
                 620
             ],
             "color": "#533",
-            "font_size": 24
+            "font_size": 24,
+            "flags": {}
         },
         {
             "id": 2,
@@ -645,7 +1219,8 @@
                 620
             ],
             "color": "#355",
-            "font_size": 24
+            "font_size": 24,
+            "flags": {}
         },
         {
             "id": 3,
@@ -657,7 +1232,8 @@
                 340
             ],
             "color": "#29699c",
-            "font_size": 24
+            "font_size": 24,
+            "flags": {}
         },
         {
             "id": 4,
@@ -669,7 +1245,8 @@
                 760
             ],
             "color": "#3a6b3a",
-            "font_size": 24
+            "font_size": 24,
+            "flags": {}
         },
         {
             "id": 5,
@@ -681,16 +1258,17 @@
                 260
             ],
             "color": "#653",
-            "font_size": 24
+            "font_size": 24,
+            "flags": {}
         }
     ],
     "config": {},
     "extra": {
         "ds": {
-            "scale": 0.8,
+            "scale": 2.164457395515411,
             "offset": [
-                0,
-                300
+                -368.9896166778119,
+                -561.3737618590757
             ]
         },
         "info": {
@@ -699,7 +1277,8 @@
             "description": "Realistic voice cloning workflow for Brazilian Portuguese using VibeVoice 9B. Features two voice modes: Microphone (close-mic) and Room (1.5m phone). Optimized for PT-BR phonemes, prosody, and sibilants.",
             "version": "1.0.0",
             "category": "audio/tts/voice-cloning"
-        }
+        },
+        "workflowRendererVersion": "LG"
     },
     "version": 0.4
 }
