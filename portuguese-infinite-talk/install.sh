@@ -236,6 +236,7 @@ echo "Checking LatentSync dependencies..."
 sed -i 's/mediapipe==0.10.11/mediapipe>=0.10.11/g' custom_nodes/ComfyUI-LatentSyncWrapper/requirements.txt
 
 pip install -r custom_nodes/ComfyUI-LatentSyncWrapper/requirements.txt
+pip install insightface onnxruntime
 
 echo "Dependencies verified."
 
