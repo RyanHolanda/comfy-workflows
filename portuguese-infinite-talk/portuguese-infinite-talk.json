@@ -2,7 +2,7 @@
     "id": "8b7a9a57-2303-4ef5-9fc2-bf41713bd1fc",
     "revision": 0,
     "last_node_id": 400,
-    "last_link_id": 601,
+    "last_link_id": 602,
     "nodes": [
         {
             "id": 260,
@@ -229,152 +229,6 @@
             ],
             "color": "#1b4669",
             "bgcolor": "#29699c"
-        },
-        {
-            "id": 281,
-            "type": "ImageResizeKJv2",
-            "pos": [
-                1230,
-                -1940
-            ],
-            "size": [
-                270,
-                360
-            ],
-            "flags": {},
-            "order": 30,
-            "mode": 0,
-            "inputs": [
-                {
-                    "localized_name": "image",
-                    "name": "image",
-                    "type": "IMAGE",
-                    "link": 553
-                },
-                {
-                    "localized_name": "mask",
-                    "name": "mask",
-                    "shape": 7,
-                    "type": "MASK",
-                    "link": null
-                },
-                {
-                    "localized_name": "width",
-                    "name": "width",
-                    "type": "INT",
-                    "widget": {
-                        "name": "width"
-                    },
-                    "link": 494
-                },
-                {
-                    "localized_name": "height",
-                    "name": "height",
-                    "type": "INT",
-                    "widget": {
-                        "name": "height"
-                    },
-                    "link": 495
-                },
-                {
-                    "localized_name": "upscale_method",
-                    "name": "upscale_method",
-                    "type": "COMBO",
-                    "widget": {
-                        "name": "upscale_method"
-                    },
-                    "link": null
-                },
-                {
-                    "localized_name": "keep_proportion",
-                    "name": "keep_proportion",
-                    "type": "COMBO",
-                    "widget": {
-                        "name": "keep_proportion"
-                    },
-                    "link": null
-                },
-                {
-                    "localized_name": "pad_color",
-                    "name": "pad_color",
-                    "type": "STRING",
-                    "widget": {
-                        "name": "pad_color"
-                    },
-                    "link": null
-                },
-                {
-                    "localized_name": "crop_position",
-                    "name": "crop_position",
-                    "type": "COMBO",
-                    "widget": {
-                        "name": "crop_position"
-                    },
-                    "link": null
-                },
-                {
-                    "localized_name": "divisible_by",
-                    "name": "divisible_by",
-                    "type": "INT",
-                    "widget": {
-                        "name": "divisible_by"
-                    },
-                    "link": null
-                },
-                {
-                    "localized_name": "device",
-                    "name": "device",
-                    "shape": 7,
-                    "type": "COMBO",
-                    "widget": {
-                        "name": "device"
-                    },
-                    "link": null
-                }
-            ],
-            "outputs": [
-                {
-                    "localized_name": "IMAGE",
-                    "name": "IMAGE",
-                    "type": "IMAGE",
-                    "links": [
-                        538
-                    ]
-                },
-                {
-                    "localized_name": "width",
-                    "name": "width",
-                    "type": "INT",
-                    "links": []
-                },
-                {
-                    "localized_name": "height",
-                    "name": "height",
-                    "type": "INT",
-                    "links": []
-                },
-                {
-                    "localized_name": "mask",
-                    "name": "mask",
-                    "type": "MASK",
-                    "links": null
-                }
-            ],
-            "properties": {
-                "Node name for S&R": "ImageResizeKJv2",
-                "cnr_id": "comfyui-kjnodes",
-                "ver": "f7eb33abc80a2aded1b46dff0dd14d07856a7d50"
-            },
-            "widgets_values": [
-                272,
-                480,
-                "lanczos",
-                "crop",
-                "0, 0, 0",
-                "center",
-                16,
-                "cpu"
-            ]
         },
         {
             "id": 240,
@@ -1200,40 +1054,6 @@
             ],
             "color": "#233",
             "bgcolor": "#355"
-        },
-        {
-            "id": 254,
-            "type": "GetNode",
-            "pos": [
-                3900,
-                -1860
-            ],
-            "size": [
-                210,
-                60
-            ],
-            "flags": {
-                "collapsed": true
-            },
-            "order": 13,
-            "mode": 0,
-            "inputs": [],
-            "outputs": [
-                {
-                    "name": "AUDIO",
-                    "type": "AUDIO",
-                    "links": [
-                        555
-                    ]
-                }
-            ],
-            "title": "Get_input_audio",
-            "properties": {},
-            "widgets_values": [
-                "input_audio"
-            ],
-            "color": "#323",
-            "bgcolor": "#535"
         },
         {
             "id": 309,
@@ -2630,91 +2450,6 @@
             "bgcolor": "#535"
         },
         {
-            "id": 320,
-            "type": "LatentSyncNode",
-            "pos": [
-                5254.704553670692,
-                -1911.5120355185784
-            ],
-            "size": [
-                340,
-                260
-            ],
-            "flags": {},
-            "order": 47,
-            "mode": 0,
-            "inputs": [
-                {
-                    "localized_name": "images",
-                    "name": "images",
-                    "type": "IMAGE",
-                    "link": 554
-                },
-                {
-                    "localized_name": "audio",
-                    "name": "audio",
-                    "type": "AUDIO",
-                    "link": 555
-                },
-                {
-                    "localized_name": "seed",
-                    "name": "seed",
-                    "type": "INT",
-                    "widget": {
-                        "name": "seed"
-                    },
-                    "link": null
-                },
-                {
-                    "localized_name": "lips_expression",
-                    "name": "lips_expression",
-                    "type": "FLOAT",
-                    "widget": {
-                        "name": "lips_expression"
-                    },
-                    "link": null
-                },
-                {
-                    "localized_name": "inference_steps",
-                    "name": "inference_steps",
-                    "type": "INT",
-                    "widget": {
-                        "name": "inference_steps"
-                    },
-                    "link": null
-                }
-            ],
-            "outputs": [
-                {
-                    "localized_name": "images",
-                    "name": "images",
-                    "type": "IMAGE",
-                    "links": [
-                        558
-                    ]
-                },
-                {
-                    "localized_name": "audio",
-                    "name": "audio",
-                    "type": "AUDIO",
-                    "links": [
-                        559
-                    ]
-                }
-            ],
-            "properties": {
-                "Node name for S&R": "LatentSyncNode"
-            },
-            "widgets_values": [
-                1247,
-                "fixed",
-                2.8,
-                35
-            ],
-            "color": "#432",
-            "bgcolor": "#653"
-        },
-        {
             "id": 321,
             "type": "Note",
             "pos": [
@@ -2926,7 +2661,7 @@
                     "name": "audio",
                     "shape": 7,
                     "type": "AUDIO",
-                    "link": 559
+                    "link": 602
                 },
                 {
                     "localized_name": "meta_batch",
@@ -3463,6 +3198,270 @@
             ],
             "color": "#322",
             "bgcolor": "#533"
+        },
+        {
+            "id": 281,
+            "type": "ImageResizeKJv2",
+            "pos": [
+                1230,
+                -1940
+            ],
+            "size": [
+                270,
+                360
+            ],
+            "flags": {},
+            "order": 30,
+            "mode": 0,
+            "inputs": [
+                {
+                    "localized_name": "image",
+                    "name": "image",
+                    "type": "IMAGE",
+                    "link": 553
+                },
+                {
+                    "localized_name": "mask",
+                    "name": "mask",
+                    "shape": 7,
+                    "type": "MASK",
+                    "link": null
+                },
+                {
+                    "localized_name": "width",
+                    "name": "width",
+                    "type": "INT",
+                    "widget": {
+                        "name": "width"
+                    },
+                    "link": 494
+                },
+                {
+                    "localized_name": "height",
+                    "name": "height",
+                    "type": "INT",
+                    "widget": {
+                        "name": "height"
+                    },
+                    "link": 495
+                },
+                {
+                    "localized_name": "upscale_method",
+                    "name": "upscale_method",
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "upscale_method"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "keep_proportion",
+                    "name": "keep_proportion",
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "keep_proportion"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "pad_color",
+                    "name": "pad_color",
+                    "type": "STRING",
+                    "widget": {
+                        "name": "pad_color"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "crop_position",
+                    "name": "crop_position",
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "crop_position"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "divisible_by",
+                    "name": "divisible_by",
+                    "type": "INT",
+                    "widget": {
+                        "name": "divisible_by"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "device",
+                    "name": "device",
+                    "shape": 7,
+                    "type": "COMBO",
+                    "widget": {
+                        "name": "device"
+                    },
+                    "link": null
+                }
+            ],
+            "outputs": [
+                {
+                    "localized_name": "IMAGE",
+                    "name": "IMAGE",
+                    "type": "IMAGE",
+                    "links": [
+                        538
+                    ]
+                },
+                {
+                    "localized_name": "width",
+                    "name": "width",
+                    "type": "INT",
+                    "links": []
+                },
+                {
+                    "localized_name": "height",
+                    "name": "height",
+                    "type": "INT",
+                    "links": []
+                },
+                {
+                    "localized_name": "mask",
+                    "name": "mask",
+                    "type": "MASK",
+                    "links": null
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "ImageResizeKJv2",
+                "cnr_id": "comfyui-kjnodes",
+                "ver": "f7eb33abc80a2aded1b46dff0dd14d07856a7d50"
+            },
+            "widgets_values": [
+                272,
+                480,
+                "lanczos",
+                "crop",
+                "0, 0, 0",
+                "center",
+                16,
+                "cpu"
+            ]
+        },
+        {
+            "id": 320,
+            "type": "LatentSyncNode",
+            "pos": [
+                5254.704553670692,
+                -1911.5120355185784
+            ],
+            "size": [
+                340,
+                260
+            ],
+            "flags": {},
+            "order": 47,
+            "mode": 0,
+            "inputs": [
+                {
+                    "localized_name": "images",
+                    "name": "images",
+                    "type": "IMAGE",
+                    "link": 554
+                },
+                {
+                    "localized_name": "audio",
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "link": 555
+                },
+                {
+                    "localized_name": "seed",
+                    "name": "seed",
+                    "type": "INT",
+                    "widget": {
+                        "name": "seed"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "lips_expression",
+                    "name": "lips_expression",
+                    "type": "FLOAT",
+                    "widget": {
+                        "name": "lips_expression"
+                    },
+                    "link": null
+                },
+                {
+                    "localized_name": "inference_steps",
+                    "name": "inference_steps",
+                    "type": "INT",
+                    "widget": {
+                        "name": "inference_steps"
+                    },
+                    "link": null
+                }
+            ],
+            "outputs": [
+                {
+                    "localized_name": "images",
+                    "name": "images",
+                    "type": "IMAGE",
+                    "links": [
+                        558
+                    ]
+                },
+                {
+                    "localized_name": "audio",
+                    "name": "audio",
+                    "type": "AUDIO",
+                    "links": []
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "LatentSyncNode"
+            },
+            "widgets_values": [
+                1247,
+                "randomize",
+                1.8,
+                28
+            ],
+            "color": "#432",
+            "bgcolor": "#653"
+        },
+        {
+            "id": 254,
+            "type": "GetNode",
+            "pos": [
+                3947.4003660832986,
+                -1744.1347314029297
+            ],
+            "size": [
+                210,
+                60
+            ],
+            "flags": {
+                "collapsed": false
+            },
+            "order": 13,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "AUDIO",
+                    "type": "AUDIO",
+                    "links": [
+                        555,
+                        602
+                    ]
+                }
+            ],
+            "title": "Get_input_audio",
+            "properties": {},
+            "widgets_values": [
+                "input_audio"
+            ],
+            "color": "#323",
+            "bgcolor": "#535"
         }
     ],
     "links": [
@@ -3763,14 +3762,6 @@
             "IMAGE"
         ],
         [
-            559,
-            320,
-            1,
-            317,
-            1,
-            "AUDIO"
-        ],
-        [
             600,
             309,
             0,
@@ -3783,6 +3774,14 @@
             254,
             0,
             400,
+            1,
+            "AUDIO"
+        ],
+        [
+            602,
+            254,
+            0,
+            317,
             1,
             "AUDIO"
         ]
@@ -3870,10 +3869,10 @@
     "config": {},
     "extra": {
         "ds": {
-            "scale": 1.1163430749358036,
+            "scale": 0.4871360792842836,
             "offset": [
-                -800.5744110903399,
-                3256.439855531778
+                -3076.6687987047044,
+                2578.756160278205
             ]
         },
         "frontendVersion": "1.28.8",
